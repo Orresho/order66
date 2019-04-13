@@ -1,0 +1,26 @@
+@import '../../styles/colors.scss';
+
+table {
+  margin: 0 auto;
+  margin-top: 200px;
+  height: 50%;
+  width: 60%;
+  max-width: 100%;
+  border-collapse: collapse;
+  background: $white;
+
+  @media(max-width: 768px) {
+    width: 98%
+  }
+  tbody{
+    border: 1px solid black;
+  }
+  tr {
+    border: 1px solid black;
+    height: 40px;
+    td, th{
+      border: 1px solid black;
+
+    }
+  }
+}

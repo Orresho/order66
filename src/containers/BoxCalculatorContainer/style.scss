@@ -1,0 +1,24 @@
+@import '../../styles/colors.scss';
+
+.box-reg-form-header {
+  padding: 10px;
+  margin: 0 auto;
+  text-align: center;
+}
+.box-reg-form {
+  padding: 20px;
+  border-radius: 7.5px;
+  border: 1px solid gray;
+  background: $white;
+  
+  .custom_input_field,
+  .custom_select_field {
+    margin-bottom: 20px;
+    text-align: left;
+    height: 65px;
+  }
+} 
+
+.view-table-action {
+  margin-top: 30px;
+}
