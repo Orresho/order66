@@ -16,28 +16,20 @@ export const Input = ({
   errorMessage, 
   isFocusing, 
   onChange, 
-  name, 
-  min,
-  max, 
   value, 
-  minLength, 
-  maxLength, 
-  autoFocus }) => (
+  autoFocus,
+  ...other
+}) => (
 
-  <div className={`custom_input_field ${isFocusing ? 'input_focus' : ''}`}>
+  <div className={'custom_input_field'}>
     {title && <label className="title">{title}</label>}
     <input
-      min={min}
-      max={max}
-      minLength={minLength}
-      maxLength={maxLength}
+      {...other}
       value={value || ''}
       type={type}
-      name={name}
       onChange={onChange}
       autoComplete="Off"
       autoFocus={autoFocus}
-      required
     />
     {errorMessage && <div className="error-message">{errorMessage || ''}</div>}
   </div>
@@ -59,7 +51,7 @@ Input.propTypes = {
 /**
  * Basic Select field that returns a label and options, no errors since first value should be pre selected
  */
-export const Select = ({ title, type, error, isFocusing, onChange, name, options, value }) => {
+export const Select = ({ title, type, error, onChange, options, ...rest }) => {
 
   const _generateOptions = () => {
     if (!options) return false;
@@ -72,13 +64,12 @@ export const Select = ({ title, type, error, isFocusing, onChange, name, options
   };
 
   return (
-    <div className={`custom_select_field ${isFocusing ? 'input_focus' : ''}`}>
+    <div className="custom_select_field">
       {title && <label className="title">{title}</label>}
       <select
+        {...rest}
         type={type}
-        name={name}
-        onChange={onChange}
-        defaultValue={options ? options[0].value : ''}>
+        onChange={onChange}>
 
         {_generateOptions()}
       </select>

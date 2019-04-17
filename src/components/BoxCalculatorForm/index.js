@@ -19,6 +19,7 @@ class BoxCalculator extends Component {
             value={name}
             errorMessage={errors[0] && errors[0].nameError}
             onChange={(e) => onChangeHandler(e, "name")}
+            required
           />
           <Input
             type="number"
@@ -28,6 +29,7 @@ class BoxCalculator extends Component {
             value={weight}
             errorMessage={errors[0] && errors[0].weightError}
             onChange={(e) => onChangeHandler(e, "weight")}
+            required
           />
           <Input
             type="color"
@@ -35,6 +37,7 @@ class BoxCalculator extends Component {
             title="Pick box color"
             disabled={disabled}
             onChange={(e) => onChangeHandler(e, "color")}
+            required
           />
           <Select
             type="select"
@@ -42,6 +45,7 @@ class BoxCalculator extends Component {
             name="destination_country"
             title="Destination Country"
             onChange={(e) => onChangeHandler(e, "destination_country")}
+            required
           />
           <button disabled={this.props.disabledButton} className="primary-button" >Save</button>
         </form>
