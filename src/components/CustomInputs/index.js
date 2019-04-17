@@ -39,10 +39,6 @@ Input.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.any.isRequired,
   name: PropTypes.string.isRequired,
-  min: PropTypes.string,
-  max: PropTypes.string,
-  minLength: PropTypes.string,
-  maxLength: PropTypes.string,
   error: PropTypes.string,
   isFocusing: PropTypes.func,
   onChange: PropTypes.func.isRequired
