@@ -13,14 +13,13 @@ import PropTypes from 'prop-types';
 export const Input = ({ 
   title, 
   type, 
-  errorMessage, 
+  error, 
   isFocusing, 
   onChange, 
   value, 
   autoFocus,
   ...other
 }) => (
-
   <div className={'custom_input_field'}>
     {title && <label className="title">{title}</label>}
     <input
@@ -31,7 +30,7 @@ export const Input = ({
       autoComplete="Off"
       autoFocus={autoFocus}
     />
-    {errorMessage && <div className="error-message">{errorMessage || ''}</div>}
+    {error && <div className="error-message">{error || ''}</div>}
   </div>
 );
 

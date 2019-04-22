@@ -11,7 +11,7 @@ export const BoxTableRows = ({ items }) => (
         <tr className="box-table-row" key={index}>
           <td>{item.name}</td>
           <td>{item.weight}</td>
-          <td>{item.boxColor}</td>
+          <td style={{ background: item.color }}>{item.color}</td>
           <td>{item.shippingCost}</td>
         </tr>
       ))}
@@ -22,8 +22,8 @@ export const BoxTableRows = ({ items }) => (
  * Table row for when there is no data to be shown
  */
 export const EmptyTable = () => (
-  <tr>
-    <td> No data found </td>
-  </tr>
+  <center>
+    <h2>No data found</h2>
+  </center>
 );
 
