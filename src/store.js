@@ -8,7 +8,7 @@ const logger = createLogger({
 })
 
 export default function configureStore() {
-  const middleware = compose(applyMiddleware(logger, thunk))
+  const middleware = compose(applyMiddleware(thunk, logger))
 
   const store = createStore(
     rootReducer,

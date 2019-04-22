@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import BoxCalculator from '../../components/BoxCalculatorForm';
 import { DestinationCountries } from '../../_config/common';
+import { connect } from 'react-redux';
+import { saveBox } from '../../redux/Actions/app';
+import Loader from '../../components/Loader';
+import Notification from '../../components/Notification';
 
 import './style.scss';
 
@@ -11,13 +15,13 @@ const VALUES = {
 
   // Number field - weight
   MIN: "0",
-  MAX: "5"
+  MAX: "100"
 }
 
 const initialState = {
   name: null,
   weight: null,
-  box_color: null,
+  box_color: '#000000',
   destination_country: DestinationCountries[0].value, // Default selected country
 }
 
@@ -34,7 +38,7 @@ class BoxCalculatorContainer extends Component {
   }
 
   formIsValid = () => {
-    const { name, weight, box_color, destination_country } = this.state;
+    const { name, weight, destination_country } = this.state;
 
     let errors = {};
     let formIsValid = true;
@@ -50,11 +54,12 @@ class BoxCalculatorContainer extends Component {
     }
 
     // Weight validation
-    if (weight < VALUES.MIN) {
+    let numWeight = Number(weight);
+    if (numWeight < VALUES.MIN) {
       errors.weightError = 'Negative values are not permitted, please enter a valid weight'
       formIsValid = false;
       resetWeight = true;
-    } else if (weight > VALUES.MAX) {
+    } else if (numWeight > VALUES.MAX) {
       errors.weightError = `Box can't weight more than ${VALUES.MAX} kg`
       formIsValid = false;
     }
@@ -71,23 +76,41 @@ class BoxCalculatorContainer extends Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
+    const { name, weight, box_color, destination_country } = this.state;
+
+    const data = {
+      name,
+      weight: Number(weight),
+      color: box_color,
+      destinationCountry: destination_country
+    };
 
     if (this.formIsValid()) {
+      this.props.saveBox(data)
+
       this.setState({ errors: {}, disabled: true, ...initialState })
 
       setTimeout(() => {
         this.setState({ disabled: false })
       }, 2000);
     }
-    // Trigger async action and send in data as payload
   }
-
+  
   handleOnChange = (e, propName) => {
     let value = e.target.value;
     this.setState({ [propName]: value })
   }
 
   render() {
+    const { isLoading } = this.props;
+    if (isLoading) {
+      return <Loader />
+    }
+
+    if (!isLoading && !this.state.errors) {
+      return <Notification />
+    }
+    
     return (
       <BoxCalculator
         onChangeHandler={this.handleOnChange}
@@ -100,4 +123,10 @@ class BoxCalculatorContainer extends Component {
   }
 }
 
-export default BoxCalculatorContainer;
+export default connect(
+  state => ({
+    isLoading: state.isLoading
+  }),
+  dispatch => ({
+    saveBox: payload => dispatch(saveBox(payload))
+  }) )(BoxCalculatorContainer);
