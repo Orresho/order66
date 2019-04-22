@@ -17,7 +17,7 @@ describe('BoxTableContainer', () => {
   it('Should render a table populated with one', () => {
     const wrapper = shallow(<BoxTableContainer />);
 
-    wrapper.setProps({ boxes: [{ name: 'qjhwbeq', weight: '10', color: '#555555', destinationCountry: 'Sweden' }] })
+    wrapper.setProps({ boxes: [{ name: 'qjhwbeq', weight: 10, color: '#555555', destinationCountry: 'Sweden', shippingCost: 13 }] })
     expect(wrapper.find('.table-header')).toHaveLength(1)
     expect(wrapper.find(EmptyTable)).toHaveLength(0)
     expect(wrapper.find(BoxTableRows)).toHaveLength(1)
