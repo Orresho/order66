@@ -1,15 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import { Input, Select } from '../CustomInputs';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class BoxCalculator extends Component {
   render() {
     const { onChangeHandler, onSubmit, header, disabled, errors, name, weight, countries } = this.props;
     return (
       <Fragment>
-        <div className="box-reg-form-header">
-          <h2>{header}</h2>
-        </div>
+        {header && (
+          <div className="box-reg-form-header">
+            <h2>{header}</h2>
+          </div>
+        )}
         <form onSubmit={onSubmit} className="box-reg-form">
           <Input
             type="text"
@@ -55,6 +58,17 @@ class BoxCalculator extends Component {
       </Fragment>
     );
   }
+}
+
+BoxCalculator.propTypes = {
+  onChangeHandler: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  header: PropTypes.string,
+  disabled: PropTypes.bool.isRequired,
+  errors: PropTypes.object,
+  name: PropTypes.string,
+  weight: PropTypes.string,
+  countries: PropTypes.array.isRequired
 }
 
 export default BoxCalculator;
