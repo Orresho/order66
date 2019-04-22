@@ -6,7 +6,8 @@ import Loader from '../../components/Loader';
 
 import './style.scss';
 
-class BoxTableContainer extends Component {
+// Use named export for unconnected component (for tests)
+export class BoxTableContainer extends Component {
   render() {
     const { boxes, isLoading } = this.props;
 
@@ -18,7 +19,7 @@ class BoxTableContainer extends Component {
         <table className="box-table">
           <tbody>
             {boxes && boxes.length > 0 && (
-              <tr>
+              <tr className="table-header">
                 <th>Receiver</th>
                 <th>Weight</th>
                 <th>Box color</th>
