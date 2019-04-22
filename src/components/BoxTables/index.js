@@ -22,8 +22,8 @@ export const BoxTableRows = ({ items }) => (
  * Table row for when there is no data to be shown
  */
 export const EmptyTable = () => (
-  <center>
-    <h2>No data found</h2>
-  </center>
+  <tr>
+    <td><h2>No data found</h2></td>
+  </tr>
 );
 
