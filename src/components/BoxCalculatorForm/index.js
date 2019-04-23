@@ -6,7 +6,7 @@ import Notification from '../Notification';
 
 class BoxCalculator extends Component {
   render() {
-    const { onChangeHandler, onSubmit, header, disabled, errors, name, weight, countries, showNotification, destination_country } = this.props;
+    const { onChangeHandler, onSubmit, header, disabled, errors, name, weight, countries, showNotification } = this.props;
     return (
       <Fragment>
         {header && (
