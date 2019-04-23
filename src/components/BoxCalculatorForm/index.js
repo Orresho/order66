@@ -1,22 +1,25 @@
 import React, { Component, Fragment } from 'react';
 import { Input, Select } from '../CustomInputs';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class BoxCalculator extends Component {
   render() {
     const { onChangeHandler, onSubmit, header, disabled, errors, name, weight, countries } = this.props;
     return (
       <Fragment>
-        <div className="box-reg-form-header">
-          <h2>{header}</h2>
-        </div>
+        {header && (
+          <div className="box-reg-form-header">
+            <h2>{header}</h2>
+          </div>
+        )}
         <form onSubmit={onSubmit} className="box-reg-form">
           <Input
             type="text"
             name="name"
             title="Name"
             value={name}
-            error={errors && errors.nameError}
+            error={errors && errors.nameError && errors.nameError}
             onChange={(e) => onChangeHandler(e, "name")}
             required
           />
@@ -46,7 +49,7 @@ class BoxCalculator extends Component {
             onChange={(e) => onChangeHandler(e, "destination_country")}
             required
           />
-          <button disabled={disabled} className="primary-button" >Save</button>
+          <button disabled={disabled} className="cy-save primary-button" >Save</button>
         </form>
 
         <div className="view-table-action">
@@ -55,6 +58,17 @@ class BoxCalculator extends Component {
       </Fragment>
     );
   }
+}
+
+BoxCalculator.propTypes = {
+  onChangeHandler: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  header: PropTypes.string,
+  disabled: PropTypes.bool.isRequired,
+  errors: PropTypes.object,
+  name: PropTypes.string,
+  weight: PropTypes.string,
+  countries: PropTypes.array.isRequired
 }
 
 export default BoxCalculator;
