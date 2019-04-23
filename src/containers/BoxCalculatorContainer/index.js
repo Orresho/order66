@@ -4,7 +4,6 @@ import { DestinationCountries } from '../../_config/common';
 import { connect } from 'react-redux';
 import { saveBox } from '../../redux/Actions/app';
 import Loader from '../../components/Loader';
-import Notification from '../../components/Notification';
 
 import './style.scss';
 
@@ -18,10 +17,15 @@ const VALUES = {
   MAX: "100"
 }
 
+// Random colors
+const red = Math.floor(Math.random() * 255)
+const green = Math.floor(Math.random() * 255)
+const blue = Math.floor(Math.random() * 255)
+
 const initialState = {
   name: null,
   weight: null,
-  box_color: '#000000',
+  box_color: `rgb(${red}, ${green}, ${blue})`,
   destination_country: DestinationCountries[0].value, // Default selected country
 }
 
@@ -36,11 +40,8 @@ class BoxCalculatorContainer extends Component {
       ...initialState,
       errors: {},
       disabled: false,
+      showNotification: false,
     };
-  }
-
-  colorValidation = () => {
-    // do color validation disabling all blue colors
   }
 
   formIsValid = () => {
@@ -94,11 +95,11 @@ class BoxCalculatorContainer extends Component {
     if (this.formIsValid()) {
       this.props.saveBox(data)
 
-      this.setState({ errors: {}, disabled: true, ...initialState })
+      this.setState({ errors: {}, disabled: true, ...initialState, showNotification: true })
 
       this.time = setTimeout(() => {
-        this.setState({ disabled: false })
-      }, 2000);
+        this.setState({ disabled: false, showNotification: false })
+      }, 3000);
     }
   }
 
@@ -117,10 +118,6 @@ class BoxCalculatorContainer extends Component {
       return <Loader />
     }
 
-    if (!isLoading && !this.state.errors) {
-      return <Notification />
-    }
-
     return (
       <BoxCalculator
         onChangeHandler={this.handleOnChange}
@@ -128,6 +125,7 @@ class BoxCalculatorContainer extends Component {
         countries={DestinationCountries}
         header="Calculate costs for shipping boxes"
         {...this.state}
+        showNotification={this.state.showNotification}
       />
     );
   }

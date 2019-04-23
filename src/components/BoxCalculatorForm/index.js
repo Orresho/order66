@@ -2,10 +2,11 @@ import React, { Component, Fragment } from 'react';
 import { Input, Select } from '../CustomInputs';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Notification from '../Notification';
 
 class BoxCalculator extends Component {
   render() {
-    const { onChangeHandler, onSubmit, header, disabled, errors, name, weight, countries } = this.props;
+    const { onChangeHandler, onSubmit, header, disabled, errors, name, weight, countries, showNotification } = this.props;
     return (
       <Fragment>
         {header && (
@@ -13,6 +14,12 @@ class BoxCalculator extends Component {
             <h2>{header}</h2>
           </div>
         )}
+
+        <div className="Notification-wrapper">
+          {showNotification && (
+            <Notification message="Cost successfully calculated and saved" />
+          )}
+        </div>
         <form onSubmit={onSubmit} className="box-reg-form">
           <Input
             type="text"
