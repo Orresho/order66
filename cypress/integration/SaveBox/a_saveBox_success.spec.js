@@ -61,6 +61,10 @@ describe('BoxCalculatorContainer SUCCESS Assertions', () => {
         .should('have.value', '')
     })
 
+    it('Should show success notification', () => {
+      cy.get('.Notification')
+    })
+
     it('Should display the new added value in the table', () => {
 
       // Redirect to table view by clicking on the view table button
