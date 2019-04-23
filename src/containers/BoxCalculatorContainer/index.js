@@ -27,11 +27,17 @@ const initialState = {
 
 class BoxCalculatorContainer extends Component {
 
-  state = {
-    ...initialState,
-    errors: {},
-    disabled: false,
-  };
+  constructor(props) {
+    super(props)
+
+    this.time = null;
+
+    this.state = {
+      ...initialState,
+      errors: {},
+      disabled: false,
+    };
+  }
 
   colorValidation = () => {
     // do color validation disabling all blue colors
@@ -46,21 +52,21 @@ class BoxCalculatorContainer extends Component {
 
     // Name validation
     if (name.length > VALUES.MAXLENGTH) {
-      errors.nameError = `Name has to be less than ${VALUES.MAXLENGTH} characters`
+      errors.nameError = { message: `Name has to be less than ${VALUES.MAXLENGTH} characters`, code: 'aboveMaxError' }
       formIsValid = false;
     } else if (name.length < VALUES.MINLENGTH) {
-      errors.nameError = `Name can't be below ${VALUES.MINLENGTH} characters`
+      errors.nameError = { message: `Name can't be below ${VALUES.MINLENGTH} characters`, code: 'belowMinError' }
       formIsValid = false;
     }
 
     // Weight validation
     let numWeight = Number(weight);
     if (numWeight < VALUES.MIN) {
-      errors.weightError = 'Negative values are not permitted, please enter a valid weight'
+      errors.weightError = { message: 'Negative values are not permitted, please enter a valid weight', code: 'negativeValError' }
       formIsValid = false;
       resetWeight = true;
     } else if (numWeight > VALUES.MAX) {
-      errors.weightError = `Box can't weight more than ${VALUES.MAX} kg`
+      errors.weightError = {message: `Box can't weight more than ${VALUES.MAX} kg`, code: 'aboveMaxError'}
       formIsValid = false;
     }
 
@@ -90,12 +96,16 @@ class BoxCalculatorContainer extends Component {
 
       this.setState({ errors: {}, disabled: true, ...initialState })
 
-      setTimeout(() => {
+      this.time = setTimeout(() => {
         this.setState({ disabled: false })
       }, 2000);
     }
   }
-  
+
+  componentWillUnmount() {
+    clearTimeout(this.time);
+  }
+
   handleOnChange = (e, propName) => {
     let value = e.target.value;
     this.setState({ [propName]: value })
@@ -110,7 +120,7 @@ class BoxCalculatorContainer extends Component {
     if (!isLoading && !this.state.errors) {
       return <Notification />
     }
-    
+
     return (
       <BoxCalculator
         onChangeHandler={this.handleOnChange}
@@ -129,4 +139,4 @@ export default connect(
   }),
   dispatch => ({
     saveBox: payload => dispatch(saveBox(payload))
-  }) )(BoxCalculatorContainer);
+  }))(BoxCalculatorContainer);

@@ -19,7 +19,7 @@ class BoxCalculator extends Component {
             name="name"
             title="Name"
             value={name}
-            error={errors && errors.nameError}
+            error={errors && errors.nameError && errors.nameError}
             onChange={(e) => onChangeHandler(e, "name")}
             required
           />
@@ -49,7 +49,7 @@ class BoxCalculator extends Component {
             onChange={(e) => onChangeHandler(e, "destination_country")}
             required
           />
-          <button disabled={disabled} className="primary-button" >Save</button>
+          <button disabled={disabled} className="cy-save primary-button" >Save</button>
         </form>
 
         <div className="view-table-action">

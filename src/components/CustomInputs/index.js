@@ -30,7 +30,7 @@ export const Input = ({
       autoComplete="Off"
       autoFocus={autoFocus}
     />
-    {error && <div className="error-message">{error || ''}</div>}
+    {error && <div data-cy-error={error.code} className="error-message">{error.message || ''}</div>}
   </div>
 );
 
