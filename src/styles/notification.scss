@@ -1,19 +1,14 @@
+@import './colors.scss';
+
 .Notification {
-  width: 270px;
+  width: 310px;
+  border-radius: 7.5px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
   height: 60px;
-  border: 1px solid red;
-  background: orange;
-  &.success {
-    border: 1px solid green;
-    background: greenyellow;
-  }
-  &.failure {
-    border: 1px solid red;
-    background: orangered;
-  }
+  border: 2px solid $dark-green;
+  background: $primary-color;
 }

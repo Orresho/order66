@@ -1,8 +1,8 @@
 import React from 'react';
 
-const notification = ({ content }) => (
+const notification = ({ message }) => (
   <div className="Notification">
-    {content}
+    <p>{message}</p>
   </div>
 )
 
