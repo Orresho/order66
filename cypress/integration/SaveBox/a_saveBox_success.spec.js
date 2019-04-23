@@ -32,7 +32,7 @@ describe('BoxCalculatorContainer SUCCESS Assertions', () => {
       cy.server()
       cy.route('POST', '**/boxinator/boxes').as('saveBox')
 
-      // Since name has to be unique on the backend, we append a somewhat unique id to the name
+      // Since name has to be unique on the backend, we append a some random numbers to the name
       cy.get('input[name=name]')
         .type(`Box${boxId}`)
         .should('have.value', `Box${boxId}`)
@@ -62,7 +62,6 @@ describe('BoxCalculatorContainer SUCCESS Assertions', () => {
     })
 
     it('Should display the new added value in the table', () => {
-      // Redirect to /listboxes
 
       // Redirect to table view by clicking on the view table button
       cy.get('.view-table-action .button')
