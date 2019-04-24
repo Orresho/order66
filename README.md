@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Install dependencies with `yarn` or `npm install` in the project directory
 - Start the server **Important step!**
 - When server is successfully started, run `yarn start`
-to start the application. 
+to start the application on `http://localhost:3000`. 
 
 ## Cypress e2e Testing
 - Start the server
