@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Get Started Locally
 - Clone project
 - Install dependencies with `yarn` or `npm install` in the project directory
-- Start the server **Important step!**
+- Start the [Boxinator server](https://github.com/Orresho/a-leafy-project) **Important step!**
 - When server is successfully started, run `yarn start`
 to start the application on `http://localhost:3000`. 
 
