@@ -16,7 +16,6 @@ export default (state = initialState, action) => {
     case appConst.SAVE_BOX_COMPLETED:
       return {
         ...state,
-        error: action.payload,
         boxList: [...state.boxList, action.payload.data],
         isLoading: false,
       }
@@ -24,7 +23,6 @@ export default (state = initialState, action) => {
     case appConst.SAVE_BOX_FAILED:
       return {
         ...state,
-        error: action.payload,
         isLoading: false,
       }
 

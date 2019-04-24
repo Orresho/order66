@@ -6,9 +6,9 @@ import axios from 'axios';
 import { boxinatorBackend } from '../_config/common';
 
 function NetworkException(data) {
-  this.value = data;
-  this.isNetworkException = true;
+  console.log('wtf err', data)
 }
+
 /**
  * 
  * @param {String} endpoint Specify api endpoint
@@ -20,6 +20,7 @@ export const fetchJSON = (endpoint, options = {}) => {
     ...options
   }).catch(error => {
     try {
+      // Could perhaps display a fallback UI or log to an error logging service
       var errorJson = JSON.parse(error);
       throw new NetworkException(errorJson);
     } catch (err) {

@@ -67,13 +67,13 @@ class BoxCalculatorContainer extends Component {
       formIsValid = false;
       resetWeight = true;
     } else if (numWeight > VALUES.MAX) {
-      errors.weightError = {message: `Box can't weight more than ${VALUES.MAX} kg`, code: 'aboveMaxError'}
+      errors.weightError = { message: `Box can't weight more than ${VALUES.MAX} kg`, code: 'aboveMaxError' }
       formIsValid = false;
     }
 
     // Destination error
     if (destination_country.length < 1) {
-      errors.destinationCountryError = 'please pick a destination country'
+      errors.destinationCountryError = { message: 'please pick a destination country', code: 'noValueError' }
       formIsValid = false;
     }
 
