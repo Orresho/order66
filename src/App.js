@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import routes from './routes';
 
 import './App.scss';
@@ -10,7 +10,7 @@ import './styles/notification.scss';
 class App extends Component {
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <Switch>
           {routes &&
             routes.map((route, key) => {
@@ -21,16 +21,11 @@ class App extends Component {
                   exact={exact}
                   path={path}
                   component={component}
-                  children={({ location }) => {
-                    if (location.pathname === '/') {
-                      return <Redirect to="/addbox" />
-                    }
-                    return null;
-                  }} />
+                />
               );
             })}
         </Switch>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }

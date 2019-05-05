@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from './redux/Reducers/app';
+import rootReducer from './redux/Reducers';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 

@@ -6,20 +6,15 @@ import * as serviceWorker from './serviceWorker';
 
 import { Provider } from "react-redux";
 import configureStore from './store'
-
-import { fetchBoxes } from './redux/Actions/app';
+import preload from './preload';
 
 const store = configureStore();
 
 // dispose as global variable to allow access from anywhere
 window.reduxStore = store;
 
-const preload = () => {
-  store.dispatch(fetchBoxes())
-}
-
 const Bootstrap = () => (
-  <Provider store={store} onEnter={preload()}>
+  <Provider store={store} onEnter={preload(store)}>
     <div className="App">
       <App />
     </div>

@@ -1,9 +1,10 @@
 import BoxRegisterContainer from './containers/BoxCalculatorContainer';
 import BoxTableContainer from './containers/BoxTableContainer';
+import HomeContainer from './containers/HomeContainer';
 
 export default [
   {
-    component: '',
+    component: HomeContainer,
     path: '/',    
     exact: true,
   },
