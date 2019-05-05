@@ -31,3 +31,10 @@ export const boxinatorBackend = {
     'some-prod-host' : CURRENT_ENV === 'dev' ?
       'some-dev-host' : 'http://localhost:8080'
 }
+
+export const contentful = {
+  host: 'https://cdn.contentful.com',
+  space_id: process.env.REACT_APP_CONTENTFUL_SPACE_ID,
+  access_token: process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN,
+  environment: 'master',
+}
